@@ -1,375 +1,375 @@
-# AI-Powered Resume Screening System
+# AI-Powered Resume Analysis & Job Matching System
 
-**Published Research**: [International Journal of Recent Scientific Engineering Research and Innovation (IJRSERI)](https://www.doi.org/10.59256/ijsreat.20250506017)
+> **Developed by [Ankitha Ramesh](https://github.com/AnkithaRameshGowda)**
 
-A comprehensive job matching and application tracking system that leverages Google's Gemini AI to analyze resumes, provide ATS optimization, and facilitate seamless communication between recruiters and applicants.
+[![Python](https://img.shields.io/badge/Python-3.8+-3776AB?style=flat&logo=python&logoColor=white)](https://python.org)
+[![Flask](https://img.shields.io/badge/Flask-2.x-000000?style=flat&logo=flask&logoColor=white)](https://flask.palletsprojects.com)
+[![Next.js](https://img.shields.io/badge/Next.js-14-000000?style=flat&logo=next.js&logoColor=white)](https://nextjs.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?style=flat&logo=typescript&logoColor=white)](https://typescriptlang.org)
+[![MongoDB](https://img.shields.io/badge/MongoDB-6.x-47A248?style=flat&logo=mongodb&logoColor=white)](https://mongodb.com)
+[![Google Gemini](https://img.shields.io/badge/Google_Gemini_AI-powered-4285F4?style=flat&logo=google&logoColor=white)](https://ai.google.dev)
+[![JWT](https://img.shields.io/badge/JWT-Auth-000000?style=flat&logo=jsonwebtokens&logoColor=white)](https://jwt.io)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat)](LICENSE)
 
-## Features
+---
+
+📄 **Published Research:** [International Journal of Recent Scientific Engineering Research and Innovation (IJRSERI)](https://www.doi.org/10.59256/ijsreat.20250506017)
+`DOI: 10.59256/ijsreat.20250506017`
+
+📸 **Visual Showcase:** [PROJECT_SHOWCASE.md](./PROJECT_SHOWCASE.md)
+
+---
+
+## Overview
+
+A full-stack, AI-driven recruitment platform that bridges the gap between recruiters and job seekers. The system uses **Google Gemini AI** to perform intelligent ATS (Applicant Tracking System) resume analysis, skill-gap identification, and job-candidate compatibility scoring — all within a real-time, role-based web application.
+
+This was developed as a final-year engineering project and has been accepted for publication in a peer-reviewed international journal.
+
+### What makes it different?
+
+- Recruiters get **AI-generated match scores** with weighted skill analysis — not just keyword counts.
+- Applicants get **personalized, actionable feedback** and course recommendations to close skill gaps.
+- The entire workflow — apply, review, communicate, decide — happens in one platform.
+
+---
+
+## Key Features
 
 ### For Recruiters
-- **Job Management**: Post, edit, and manage job listings with detailed requirements and skill weights
-- **Application Review**: View applications with AI-generated match scores and detailed analysis
-- **Candidate Insights**: Get comprehensive insights into candidate skills and qualifications
-- **Automated Feedback**: Send personalized feedback to applicants with one click
-- **Real-time Notifications**: Instant alerts for new applications and status updates
-- **Messaging System**: Built-in communication with applicants via email integration
-- **Application Management**: Accept, reject, and track application statuses
+- Post and manage job listings with custom skill weights
+- View AI-scored applications ranked by compatibility
+- Accept or reject with one-click automated feedback delivery
+- Real-time notifications for new applications
+- Direct messaging with applicants
 
 ### For Applicants
-- **Job Discovery**: Browse and search for relevant job opportunities
-- **Smart Applications**: Apply with resume upload and automatic ATS analysis
-- **AI Resume Analysis**: Get detailed ATS scores, skill matching, and optimization suggestions
-- **Personalized Feedback**: Receive constructive feedback on skills and improvement areas
-- **Skill Development**: Get course recommendations based on resume analysis
-- **Application Tracking**: Monitor application status and recruiter responses
-- **Real-time Notifications**: Stay updated on application progress
-- **Messaging**: Communicate directly with recruiters
+- Browse and apply to jobs with resume upload (PDF/DOCX)
+- Instant ATS score and skill-matching report
+- Personalized improvement suggestions and course recommendations
+- Track application status in real time
+- Message recruiters directly
 
-### Technical Features
-- **Multi-Service Architecture**: Scalable microservices architecture
-- **JWT Authentication**: Secure user authentication and authorization
-- **Real-time Updates**: Live notifications and messaging
-- **ATS Optimization**: AI-powered resume analysis and scoring
-- **Skill Matching**: Intelligent job-candidate compatibility scoring
-- **Data Isolation**: User-specific data storage and privacy
-- **Responsive Design**: Modern, mobile-friendly interface
+### Platform
+- JWT-based secure authentication with role separation (recruiter / applicant)
+- Microservices backend architecture (3 independent Flask services)
+- Fully responsive UI with dark/light mode support
+- User-scoped data isolation — no data leakage between accounts
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Frontend | Next.js 14, TypeScript, Tailwind CSS, shadcn/ui, Recharts |
+| Backend | Python, Flask, Flask-CORS |
+| AI Engine | Google Gemini AI (resume analysis, scoring, recommendations) |
+| Database | MongoDB (PyMongo) |
+| Auth | JWT (JSON Web Tokens), bcrypt |
+| File Parsing | PyPDF2, python-docx |
+| Dev Tools | ESLint, Prettier, PostCSS |
+
+---
 
 ## Architecture
 
-### Backend Services
-- **Auth Service** (Port 5001): Authentication, jobs, applications, notifications, messaging
-- **ATS Service** (Port 5000): Resume analysis and ATS scoring
-- **Job Matching AI** (Port 5002): AI-powered job-candidate matching
+The backend is split into three independent microservices:
 
-### Frontend
-- **Next.js 14**: Modern React framework with TypeScript
-- **Tailwind CSS**: Utility-first styling framework
-- **shadcn/ui**: Beautiful, accessible UI components
-- **Dark/Light Mode**: Theme switching support
+```
+┌─────────────────────────────────────────────────────────┐
+│                     Next.js Frontend                    │
+│              (localhost:3000 — TypeScript)               │
+└────────────┬───────────────────┬───────────────────┬────┘
+             │                   │                   │
+     ┌───────▼──────┐   ┌────────▼──────┐  ┌────────▼──────┐
+     │  Auth Service │   │  ATS Service  │  │  Job Match AI │
+     │  Port 5001    │   │  Port 5000    │  │  Port 5002    │
+     │               │   │               │  │               │
+     │ • Auth/JWT    │   │ • Resume NLP  │  │ • Skill Match │
+     │ • Jobs CRUD   │   │ • ATS Scoring │  │ • Compat Score│
+     │ • Applications│   │ • Skill Extract│  │ • Gemini AI   │
+     │ • Messaging   │   │ • Suggestions │  │               │
+     │ • Notifications│  └───────────────┘  └───────────────┘
+     └───────┬───────┘
+             │
+     ┌───────▼───────┐
+     │    MongoDB    │
+     │               │
+     │ users         │
+     │ jobs          │
+     │ applications  │
+     │ notifications │
+     │ messages      │
+     └───────────────┘
+```
 
-### Database
-- **MongoDB**: NoSQL database for flexible data storage
-- **Collections**: users, jobs, applications, notifications, messages
+---
 
-## Technical Setup
+## Getting Started
 
 ### Prerequisites
-- Python 3.8 or higher
-- MongoDB (running locally or accessible)
+
+- Python 3.8+
 - Node.js 18+ and npm
-- Google Gemini API key
+- MongoDB (local or Atlas)
+- Google Gemini API key ([get one here](https://ai.google.dev/))
 
-### Installation
+### 1. Clone the Repository
 
-1. **Clone the repository**
 ```bash
-git clone <repository-url>
-cd ai-powered-resume-screening-system
+git clone https://github.com/AnkithaRameshGowda/AI-Powered-Resume-Analysis-System.git
+cd AI-Powered-Resume-Analysis-System
 ```
 
-2. **Set up Backend Environment**
-```bash
-cd backend
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-pip install -r requirements.txt
-```
+### 2. Configure Environment Variables
 
-3. **Set up Frontend Environment**
-```bash
-cd frontend
-npm install
-```
-
-4. **Configure Environment Variables**
 ```bash
 cp .env.example .env
 ```
-Edit `.env` file and add:
-- `GOOGLE_API_KEY`: Your Google Gemini API key
-- `MONGODB_URI`: Your MongoDB connection string
-- `JWT_SECRET_KEY`: Your JWT secret key
 
-### Running Application
+Edit `.env` and fill in:
 
-#### 🚀 Quick Start (Recommended)
-```bash
-python run.py
-```
-This single command starts all services automatically:
-- **Auth Service**: http://localhost:5001
-- **ATS Service**: http://localhost:5000
-- **Job Matching AI**: http://localhost:5002
-- **Frontend**: http://localhost:3000
-
-#### 🔧 Manual Start (Advanced)
-```bash
-# Terminal 1: Start Auth Service
-python auth.py
-
-# Terminal 2: Start ATS Service
-python ats.py
-
-# Terminal 3: Start Job Matching AI
-python job_matching_ai.py
-
-# Terminal 4: Start Frontend
-cd frontend
-npm run dev
-```
-
-## API Documentation
-
-### Authentication Endpoints
-- `POST /api/auth/register` - User registration
-- `POST /api/auth/login` - User login
-- `GET /api/user` - Get current user info
-
-### Job Management
-- `GET /api/jobs` - Get all active jobs
-- `POST /api/jobs` - Create new job (recruiters only)
-- `GET /api/jobs/<id>` - Get job details
-- `PUT /api/jobs/<id>` - Update job (recruiters only)
-- `DELETE /api/jobs/<id>` - Delete job (recruiters only)
-
-### Application Management
-- `POST /api/jobs/<job_id>/apply` - Submit job application
-- `GET /api/applications` - Get user applications
-- `PUT /api/applications/<id>/status` - Update application status
-- `GET /api/applications/<id>/feedback` - Get application feedback
-
-### ATS Analysis
-- `POST /api/analyze-resume` - Analyze resume against job description
-- `POST /api/skill-recommendations` - Get skill development recommendations
-
-### Notifications
-- `GET /api/notifications` - Get user notifications
-- `POST /api/notifications/read/<id>` - Mark notification as read
-
-### Messaging
-- `GET /api/messages/conversations` - Get user conversations
-- `POST /api/messages/send` - Send message
-- `GET /api/messages/<conversation_id>` - Get conversation messages
-
-## How It Works
-
-### Application Flow
-1. **Job Application**: Applicant uploads resume and applies for job
-2. **ATS Analysis**: Resume is automatically analyzed against job requirements
-3. **Skill Matching**: AI calculates compatibility score based on weighted skills
-4. **Recruiter Review**: Recruiters see match scores and detailed analysis
-5. **Status Updates**: Recruiters can accept/reject with automated feedback
-6. **Feedback Delivery**: Applicants receive personalized improvement suggestions
-
-### AI Analysis Features
-- **ATS Scoring**: Resume optimization score out of 100
-- **Skill Extraction**: Automatic identification of technical skills
-- **Job Matching**: Intelligent compatibility scoring
-- **Improvement Suggestions**: Specific recommendations for resume enhancement
-- **Course Recommendations**: Learning resources based on skill gaps
-
-### Real-time Features
-- **Live Notifications**: Instant alerts for applications and status changes
-- **Messaging System**: Direct communication between recruiters and applicants
-- **Status Tracking**: Real-time application status updates
-
-## Key Technologies
-
-### Backend
-- **Flask**: Python web framework
-- **MongoDB**: NoSQL database with PyMongo
-- **JWT**: JSON Web Token authentication
-- **Google Gemini AI**: Advanced AI analysis and scoring
-- **Flask-CORS**: Cross-origin resource sharing
-- **PyPDF2**: PDF text extraction
-- **python-docx**: DOCX text extraction
-
-### Frontend
-- **Next.js 14**: React framework with App Router
-- **TypeScript**: Type-safe JavaScript
-- **Tailwind CSS**: Utility-first CSS framework
-- **Lucide React**: Modern icon library
-- **Recharts**: Data visualization library
-- **Axios**: HTTP client for API requests
-
-### Development Tools
-- **ESLint**: Code linting and formatting
-- **Prettier**: Code formatting
-- **PostCSS**: CSS processing
-
-## Recent Bug Fixes
-
-### Fixed Issues
-- **Notification System**: Resolved inconsistent notification generation
-- **Data Isolation**: Fixed ATS feedback leakage between users
-- **Message Alignment**: Corrected message display in conversations
-- **Duplicate Prevention**: Added checks for duplicate notifications
-- **User Authentication**: Enhanced JWT token handling
-- **Real-time Updates**: Improved notification and message polling
-
-### Security Enhancements
-- **User Data Isolation**: Each user sees only their own data
-- **Secure Storage**: User-specific localStorage implementation
-- **Input Validation**: Comprehensive API input validation
-- **CORS Protection**: Cross-origin request security
-- **Data Isolation**: User-specific data access controls
-- **Session Management**: Secure session handling
-
-## Database Schema
-
-### Users Collection
-```javascript
-{
-  _id: ObjectId,
-  name: String,
-  email: String,
-  password: String, // hashed
-  role: String, // 'recruiter' | 'applicant'
-  createdAt: Date,
-  updatedAt: Date
-}
-```
-
-### Jobs Collection
-```javascript
-{
-  _id: ObjectId,
-  title: String,
-  company: String,
-  description: String,
-  location: String,
-  skills: [{ name: String, weight: Number }],
-  recruiterId: String,
-  recruiterEmail: String,
-  active: Boolean,
-  applications: [String], // application IDs
-  createdAt: Date,
-  updatedAt: Date
-}
-```
-
-### Applications Collection
-```javascript
-{
-  _id: ObjectId,
-  jobId: String,
-  jobTitle: String,
-  companyName: String,
-  applicantId: String,
-  applicantName: String,
-  applicantEmail: String,
-  resumeData: String,
-  matchScore: Number,
-  status: String, // 'pending' | 'accepted' | 'rejected'
-  feedback: String,
-  notes: String,
-  createdAt: Date,
-  updatedAt: Date
-}
-```
-
-### Notifications Collection
-```javascript
-{
-  _id: ObjectId,
-  userId: String,
-  type: String, // 'application' | 'status' | 'message'
-  title: String,
-  message: String,
-  jobId: String,
-  applicantName: String,
-  jobTitle: String,
-  read: Boolean,
-  createdAt: Date
-}
-```
-
-### Messages Collection
-```javascript
-{
-  _id: ObjectId,
-  senderId: String,
-  senderEmail: String,
-  receiverId: String,
-  receiverEmail: String,
-  jobId: String,
-  message: String,
-  read: Boolean,
-  createdAt: Date
-}
-```
-
-## Getting API Keys
-
-### Google Gemini API Key
-1. Visit [Google AI Studio](https://ai.google.dev/)
-2. Sign up for API access
-3. Create a new API key
-4. Add the key to your `.env` file as `GOOGLE_API_KEY`
-
-### MongoDB Setup
-1. Install MongoDB locally or use MongoDB Atlas
-2. Get connection string
-3. Add to `.env` file as `MONGODB_URI`
-
-## Deployment
-
-### Environment Variables
 ```env
 GOOGLE_API_KEY=your_gemini_api_key_here
 MONGODB_URI=mongodb://localhost:27017/ai_resume_system
 JWT_SECRET_KEY=your_jwt_secret_key_here
-NODE_ENV=production
+NODE_ENV=development
 ```
 
-### Production Setup
-1. **Backend Deployment**: Deploy Flask services to cloud provider
-2. **Frontend Deployment**: Build and deploy Next.js app
-3. **Database**: Use MongoDB Atlas for production
-4. **Environment**: Configure production environment variables
-5. **Domain**: Set up custom domain and SSL
+### 3. Install Dependencies
 
-## Mobile Responsiveness
+**Backend:**
+```bash
+python -m venv venv
+source venv/bin/activate        # Windows: venv\Scripts\activate
+pip install -r requirements.txt
+```
 
-The application is fully responsive and works seamlessly across:
-- **Desktop**: Full-featured experience
-- **Tablet**: Optimized layout and navigation
-- **Mobile**: Touch-friendly interface with simplified navigation
+**Frontend:**
+```bash
+npm install
+```
 
-## Security Features
+### 4. Run the Application
 
-- **JWT Authentication**: Secure token-based authentication
-- **Password Hashing**: Bcrypt password encryption
-- **Input Validation**: Comprehensive API input validation
-- **CORS Protection**: Cross-origin request security
-- **Data Isolation**: User-specific data access controls
-- **Session Management**: Secure session handling
+**Quick start (recommended) — launches all 4 services:**
+```bash
+python run.py
+```
 
-## Performance Optimizations
+| Service | URL |
+|---|---|
+| Frontend | http://localhost:3000 |
+| Auth Service | http://localhost:5001 |
+| ATS Service | http://localhost:5000 |
+| Job Matching AI | http://localhost:5002 |
 
-- **Lazy Loading**: Optimized component loading
-- **Caching**: Efficient data caching strategies
-- **Database Indexing**: Optimized query performance
-- **API Optimization**: Efficient response handling
-- **Frontend Optimization**: Code splitting and minification
+**Manual start (advanced):**
+```bash
+# Four separate terminals:
+python auth.py
+python ats.py
+python job_matching_ai.py
+npm run dev        # from root directory
+```
 
-## Contributing
+---
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
+## API Reference
+
+<details>
+<summary><strong>Authentication</strong></summary>
+
+| Method | Endpoint | Description |
+|---|---|---|
+| POST | `/api/auth/register` | Register new user |
+| POST | `/api/auth/login` | Login and receive JWT |
+| GET | `/api/user` | Get authenticated user info |
+
+</details>
+
+<details>
+<summary><strong>Jobs</strong></summary>
+
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/api/jobs` | List all active jobs |
+| POST | `/api/jobs` | Create job (recruiter only) |
+| GET | `/api/jobs/<id>` | Get job details |
+| PUT | `/api/jobs/<id>` | Update job (recruiter only) |
+| DELETE | `/api/jobs/<id>` | Delete job (recruiter only) |
+
+</details>
+
+<details>
+<summary><strong>Applications</strong></summary>
+
+| Method | Endpoint | Description |
+|---|---|---|
+| POST | `/api/jobs/<job_id>/apply` | Submit application with resume |
+| GET | `/api/applications` | Get current user's applications |
+| PUT | `/api/applications/<id>/status` | Update status (recruiter only) |
+| GET | `/api/applications/<id>/feedback` | Retrieve AI feedback |
+
+</details>
+
+<details>
+<summary><strong>ATS Analysis</strong></summary>
+
+| Method | Endpoint | Description |
+|---|---|---|
+| POST | `/api/analyze-resume` | Analyze resume vs job description |
+| POST | `/api/skill-recommendations` | Get skill gap recommendations |
+
+</details>
+
+<details>
+<summary><strong>Notifications & Messaging</strong></summary>
+
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/api/notifications` | Get user notifications |
+| POST | `/api/notifications/read/<id>` | Mark notification as read |
+| GET | `/api/messages/conversations` | List conversations |
+| POST | `/api/messages/send` | Send a message |
+| GET | `/api/messages/<conversation_id>` | Get conversation thread |
+
+</details>
+
+---
+
+## How It Works
+
+```
+Applicant uploads resume
+        │
+        ▼
+ATS Service extracts text (PDF/DOCX)
+        │
+        ▼
+Gemini AI scores resume: ATS optimization, keyword density,
+formatting quality → score out of 100
+        │
+        ▼
+Job Matching AI computes compatibility score using
+weighted skill matching between resume and job requirements
+        │
+        ▼
+Recruiter sees ranked candidates with scores + full AI analysis
+        │
+        ▼
+Recruiter accepts/rejects → automated feedback sent to applicant
+        │
+        ▼
+Applicant receives personalized suggestions + course recommendations
+```
+
+---
+
+## Database Schema
+
+<details>
+<summary>View schema definitions</summary>
+
+```javascript
+// Users
+{ _id, name, email, password (bcrypt), role: 'recruiter'|'applicant', createdAt, updatedAt }
+
+// Jobs
+{ _id, title, company, description, location,
+  skills: [{ name, weight }], recruiterId, recruiterEmail,
+  active, applications: [id], createdAt, updatedAt }
+
+// Applications
+{ _id, jobId, jobTitle, companyName, applicantId, applicantName,
+  applicantEmail, resumeData, matchScore, 
+  status: 'pending'|'accepted'|'rejected', feedback, notes, createdAt, updatedAt }
+
+// Notifications
+{ _id, userId, type: 'application'|'status'|'message',
+  title, message, jobId, applicantName, jobTitle, read, createdAt }
+
+// Messages
+{ _id, senderId, senderEmail, receiverId, receiverEmail,
+  jobId, message, read, createdAt }
+```
+
+</details>
+
+---
+
+## Security
+
+- Passwords hashed with **bcrypt**
+- All routes protected via **JWT token verification**
+- Strict **user-scoped data access** — users only see their own records
+- **CORS** configured per service
+- Comprehensive **input validation** on all API endpoints
+
+---
+
+## Research Publication
+
+This project is the implementation behind a peer-reviewed research paper:
+
+> **"AI-Powered Resume Screening System"**
+> Ankitha R
+> *International Journal of Recent Scientific Engineering Research and Innovation (IJRSERI)*
+> DOI: [10.59256/ijsreat.20250506017](https://www.doi.org/10.59256/ijsreat.20250506017)
+
+The full project report is available in [`Ankitha_Final.pdf`](./Ankitha_Final.pdf).
+
+---
+
+## Project Showcase
+
+Screenshots, dashboard previews, and ATS report samples are organized in **[PROJECT_SHOWCASE.md](./PROJECT_SHOWCASE.md)**.
+
+---
+
+## Repository Structure
+
+```
+AI-Powered-Resume-Analysis-System/
+│
+├── app/                        # Next.js App Router pages
+├── components/                 # Reusable React components
+├── hooks/                      # Custom React hooks
+├── lib/                        # Utility functions
+│
+├── auth.py                     # Auth microservice (Port 5001)
+├── ats.py                      # ATS analysis service (Port 5000)
+├── job_matching_ai.py          # Job matching AI service (Port 5002)
+├── run.py                      # Single-command launcher
+├── init_db.py                  # Database initialization
+├── requirements.txt            # Python dependencies
+│
+├── package.json                # Node.js dependencies
+├── tailwind.config.ts          # Tailwind configuration
+├── tsconfig.json               # TypeScript configuration
+│
+├── screenshots/                # UI screenshots (see PROJECT_SHOWCASE.md)
+├── reports/                    # ATS sample reports
+│
+├── Ankitha_Final.pdf           # Full project report
+├── README.md                   # This file
+├── PROJECT_SHOWCASE.md         # Visual showcase
+├── SETUP.md                    # Extended setup guide
+└── .gitignore
+```
+
+---
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Support
-
-For support or questions:
-- Create an issue in the repository
-- Check the documentation for common solutions
-- Review the API documentation for endpoint usage
+This project is licensed under the [MIT License](./LICENSE).
 
 ---
+
+## Author
+
+**Ankitha Ramesh
+**
+Final Year Engineering Project — Published Research
+[GitHub](https://github.com/AnkithaRameshGowda) · [Research Paper](https://www.doi.org/10.59256/ijsreat.20250506017)
