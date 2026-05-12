@@ -1,6 +1,6 @@
 # Project Showcase — AI-Powered Resume Analysis & Job Matching System
 
-> **Developed by Ankitha Ramesh Gowda**
+> **Developed by Ankitha Ramesh**
 > 📄 [Research Paper (DOI)](https://www.doi.org/10.59256/ijsreat.20250506017) · 🔙 [Back to README](./README.md)
 
 This document contains the full visual walkthrough of the application — UI screenshots, workflow demonstrations, and ATS report samples. Source code and setup instructions are in the main [README.md](./README.md).
@@ -12,14 +12,12 @@ This document contains the full visual walkthrough of the application — UI scr
 1. [Home Page & Landing](#1-home-page--landing)
 2. [Authentication](#2-authentication)
 3. [Recruiter Dashboard](#3-recruiter-dashboard)
-4. [Job Posting & Management](#4-job-posting--management)
-5. [Applicant Dashboard](#5-applicant-dashboard)
-6. [Job Discovery & Application](#6-job-discovery--application)
-7. [ATS Resume Analysis](#7-ats-resume-analysis)
-8. [Notifications System](#8-notifications-system)
-9. [Messaging System](#9-messaging-system)
-10. [ATS Reports](#10-ats-reports)
-11. [Mobile Responsiveness](#11-mobile-responsiveness)
+4. [Job Posting](#4-job-posting)
+5. [Job Discovery & Application](#5-job-discovery--application)
+6. [ATS Resume Analysis](#6-ats-resume-analysis)
+7. [Notifications System](#7-notifications-system)
+8. [Messaging System](#8-messaging-system)
+9. [ATS Reports](#9-ats-reports)
 
 ---
 
@@ -49,45 +47,38 @@ Secure registration and login with role selection (Recruiter / Applicant). JWT t
 
 ## 3. Recruiter Dashboard
 
-The recruiter home screen provides an overview of posted jobs, incoming applications, AI match scores, and quick actions.
+The recruiter home screen provides an overview of posted jobs, incoming applications, and AI match scores. Each candidate is ranked by AI-computed compatibility score with expandable analysis details.
 
 ![Recruiter Dashboard](./screenshots/recruiter-dashboard.png)
 
 **Application Review Panel:**
 
-The review panel shows each candidate ranked by AI-computed compatibility score, with expandable analysis details.
-
 ![Application Review](./screenshots/recruiter-application-review.png)
-
-**Candidate Insights:**
-
-Detailed breakdown of a candidate's matched skills, missing skills, and ATS score alongside resume content.
-
-![Candidate Insights](./screenshots/recruiter-candidate-insights.png)
 
 > *Recruiters can accept or reject applications in one click. Automated, personalized feedback is sent to the applicant immediately.*
 
 ---
 
-## 4. Job Posting & Management
+## 4. Job Posting
 
-Recruiters can create job listings with a full description and a weighted skills list. The skill weights influence the AI compatibility scoring.
+Recruiters create job listings with a full description and a weighted skills list. Skill weights directly influence the AI compatibility scoring — signalling which qualifications are critical vs. nice-to-have.
 
 **Create Job:**
 ![Create Job Form](./screenshots/job-create.png)
 
-**Manage Jobs:**
-![Job Management](./screenshots/job-manage.png)
-
-> *Skill weights allow recruiters to signal which qualifications are critical vs. nice-to-have — the AI respects these priorities in scoring.*
+> *The AI respects skill weights when ranking candidates, so a required skill like "React" outweighs a preferred one like "GraphQL".*
 
 ---
 
-## 5. Applicant Dashboard
+## 5. Job Discovery & Application
 
-Applicants see a personalized dashboard with a summary of their application statuses, recent activity, and quick links to continue applying.
+Applicants browse active job listings and apply with resume upload in one seamless flow. The platform lists all open roles with company, location, and required skills visible upfront.
 
-![Applicant Dashboard](./screenshots/applicant-dashboard.png)
+**Apply for a Job:**
+
+The application form accepts PDF or DOCX resumes. On submission, the ATS analysis runs automatically in the background.
+
+![Apply Flow](./screenshots/apply-flow.png)
 
 **Application Status Tracker:**
 
@@ -97,22 +88,7 @@ Applicants see a personalized dashboard with a summary of their application stat
 
 ---
 
-## 6. Job Discovery & Application
-
-Applicants can browse active job listings, filter by role or location, and apply with resume upload in one flow.
-
-**Browse Jobs:**
-![Job Listings](./screenshots/job-listings.png)
-
-**Apply for a Job:**
-
-The application form accepts PDF or DOCX resumes. On submission, the ATS analysis runs automatically.
-
-![Apply Flow](./screenshots/apply-flow.png)
-
----
-
-## 7. ATS Resume Analysis
+## 6. ATS Resume Analysis
 
 The core AI feature. After a resume is uploaded, the system runs it through the ATS and Job Matching services powered by Google Gemini AI.
 
@@ -134,7 +110,7 @@ The AI generates specific, actionable recommendations to improve the resume for 
 
 **Course Recommendations:**
 
-Based on identified skill gaps, the system recommends learning resources.
+Based on identified skill gaps, the system recommends learning resources to close them.
 
 ![Course Recommendations](./screenshots/ats-course-recommendations.png)
 
@@ -142,9 +118,9 @@ Based on identified skill gaps, the system recommends learning resources.
 
 ---
 
-## 8. Notifications System
+## 7. Notifications System
 
-Both recruiters and applicants receive real-time notifications for key events — new applications, status changes, and new messages.
+Both recruiters and applicants receive real-time notifications for key events — new applications, status changes, and new messages. Notifications are deduplicated and user-scoped.
 
 **Recruiter Notifications:**
 ![Recruiter Notifications](./screenshots/notifications-recruiter.png)
@@ -152,13 +128,11 @@ Both recruiters and applicants receive real-time notifications for key events �
 **Applicant Notifications:**
 ![Applicant Notifications](./screenshots/notifications-applicant.png)
 
-> *Notifications are deduplicated and user-scoped. Each user only sees events relevant to their account.*
-
 ---
 
-## 9. Messaging System
+## 8. Messaging System
 
-An in-platform messaging system connects recruiters and applicants, with conversation threads organized by job.
+An in-platform messaging system connects recruiters and applicants, with conversation threads organized by job context.
 
 **Conversations List:**
 ![Conversations](./screenshots/messages-list.png)
@@ -166,29 +140,17 @@ An in-platform messaging system connects recruiters and applicants, with convers
 **Message Thread:**
 ![Message Thread](./screenshots/messages-thread.png)
 
-> *Messages are tied to a specific job context, keeping communication organized when a recruiter manages multiple roles.*
+> *Messages are tied to a specific job, keeping communication organized when a recruiter manages multiple roles.*
 
 ---
 
-## 10. ATS Reports
+## 9. ATS Reports
 
 Full PDF reports are generated for ATS analysis sessions, suitable for sharing or archiving.
 
 | Report | Description |
 |---|---|
 | [Sample ATS Report](./reports/ats-report-sample.pdf) | Example full ATS analysis report |
-
-> *Replace the sample report path above with your actual generated report file.*
-
----
-
-## 11. Mobile Responsiveness
-
-The application is fully responsive across all screen sizes.
-
-| Mobile View | Tablet View |
-|---|---|
-| ![Mobile](./screenshots/mobile-view.png) | ![Tablet](./screenshots/tablet-view.png) |
 
 ---
 
@@ -217,8 +179,6 @@ Applicant receives notification with score + improvement tips
 
 ## Screenshots Index
 
-> **Note to maintainer:** Replace placeholder paths below with actual screenshot files before final portfolio submission.
-
 | Screenshot File | Description |
 |---|---|
 | `screenshots/home.png` | Landing page |
@@ -226,13 +186,9 @@ Applicant receives notification with score + improvement tips
 | `screenshots/login.png` | Login screen |
 | `screenshots/recruiter-dashboard.png` | Recruiter main dashboard |
 | `screenshots/recruiter-application-review.png` | Application review panel |
-| `screenshots/recruiter-candidate-insights.png` | Candidate detail view |
 | `screenshots/job-create.png` | Create job form |
-| `screenshots/job-manage.png` | Job management list |
-| `screenshots/applicant-dashboard.png` | Applicant dashboard |
-| `screenshots/applicant-application-status.png` | Application status view |
-| `screenshots/job-listings.png` | Job browse page |
 | `screenshots/apply-flow.png` | Resume upload + apply |
+| `screenshots/applicant-application-status.png` | Application status view |
 | `screenshots/ats-score.png` | ATS score result |
 | `screenshots/ats-skill-match.png` | Skill match chart |
 | `screenshots/ats-suggestions.png` | AI improvement suggestions |
@@ -241,8 +197,6 @@ Applicant receives notification with score + improvement tips
 | `screenshots/notifications-applicant.png` | Applicant notifications |
 | `screenshots/messages-list.png` | Conversations list |
 | `screenshots/messages-thread.png` | Message thread view |
-| `screenshots/mobile-view.png` | Mobile layout |
-| `screenshots/tablet-view.png` | Tablet layout |
 
 ---
 
