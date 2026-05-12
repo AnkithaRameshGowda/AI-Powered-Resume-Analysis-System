@@ -1,6 +1,6 @@
 # Project Showcase — AI-Powered Resume Analysis & Job Matching System
 
-> **Developed by Ankitha Ramesh Gowda**
+> **Developed by Ankitha Ramesh**
 > 📄 [Research Paper (DOI)](https://www.doi.org/10.59256/ijsreat.20250506017) · 🔙 [Back to README](./README.md)
 
 This document contains the full visual walkthrough of the application — UI screenshots, workflow demonstrations, and ATS report samples. Source code and setup instructions are in the main [README.md](./README.md).
