@@ -314,11 +314,11 @@ Applicant receives personalized suggestions + course recommendations
 This project is the implementation behind a peer-reviewed research paper:
 
 > **"AI-Powered Resume Screening System"**
-> Ankitha R
+> Ankitha Ramesh
 > *International Journal of Recent Scientific Engineering Research and Innovation (IJRSERI)*
 > DOI: [10.59256/ijsreat.20250506017](https://www.doi.org/10.59256/ijsreat.20250506017)
 
-The full project report is available in [`Ankitha_Final.pdf`](./Ankitha_Final.pdf).
+The full research paper is available via the DOI link above.
 
 ---
 
@@ -352,7 +352,6 @@ AI-Powered-Resume-Analysis-System/
 ├── screenshots/                # UI screenshots (see PROJECT_SHOWCASE.md)
 ├── reports/                    # ATS sample reports
 │
-├── Ankitha_Final.pdf           # Full project report
 ├── README.md                   # This file
 ├── PROJECT_SHOWCASE.md         # Visual showcase
 ├── SETUP.md                    # Extended setup guide
@@ -369,7 +368,6 @@ This project is licensed under the [MIT License](./LICENSE).
 
 ## Author
 
-**Ankitha Ramesh
-**
+**Ankitha Ramesh**
 Final Year Engineering Project — Published Research
 [GitHub](https://github.com/AnkithaRameshGowda) · [Research Paper](https://www.doi.org/10.59256/ijsreat.20250506017)
